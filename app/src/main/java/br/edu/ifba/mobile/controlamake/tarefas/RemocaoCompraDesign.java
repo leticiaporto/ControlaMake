@@ -25,6 +25,7 @@ public class RemocaoCompraDesign extends AsyncTask<Void, Void, String> {//paradi
         String mensagem = "";
 
         if(compraDesign.getCodigo()!=-1){
+            //remove no banco de dados
             if(FachadaBD.getInstance().removerDesign(compraDesign)==0){
                 mensagem="Problemas de remoção!";
             }else

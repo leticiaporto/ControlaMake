@@ -36,6 +36,7 @@ public class FragmentoListaComprasDesign extends Fragment {
     private View tela = null;
     private ListView lista = null;
     @Override
+    //inflando a tela
     public View onCreateView(LayoutInflater inflador, ViewGroup vgrupo, Bundle savedInstance){ //pega o arquivo .xml e transforma em arquivo na memoria
         tela = inflador.inflate(R.layout.fragmento_lista_compras_design, vgrupo, false);
         preparar();
@@ -47,20 +48,6 @@ public class FragmentoListaComprasDesign extends Fragment {
         super.onCreateOptionsMenu(menu,inflador);
         inflador.inflate(R.menu.menu_controla_make, menu);
 
-    }
-//REMOÇÃO---------------------------------------------------------------------------------------
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){//qual a ação a depender do clic
-        long id= item.getItemId();
-        if (id != AdapterView.INVALID_ROW_ID){
-            if (id==R.id.cadastro_remover){
-                RemocaoCompraDesign remocao=new RemocaoCompraDesign(this.getContext(), this.getCompraDesignSelecionada());
-                remocao.execute();
-                atualizar();
-                atualizar();
-            }
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private void preparar() {
@@ -76,7 +63,7 @@ public class FragmentoListaComprasDesign extends Fragment {
         ListagemCompraDesign listagem = new ListagemCompraDesign(this.getContext(),lista);
         listagem.execute();
     }
-
+    //verifica a compra selecionada e passa para o fragmento cadastro design
     public CompraDesign getCompraDesignSelecionada(){
         CompraDesign compraDesign =new CompraDesign();
         int posicao=lista.getCheckedItemPosition();
@@ -85,5 +72,20 @@ public class FragmentoListaComprasDesign extends Fragment {
         }
 
         return compraDesign;
+    }
+
+    //REMOÇÃO: envia a compra selecionada para um obejto RemoçãoCompraDesign---------------------------------------------------------------------------------------
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){//qual a ação a depender do clic
+        long id= item.getItemId();
+        if (id != AdapterView.INVALID_ROW_ID){
+            if (id==R.id.cadastro_remover){
+                RemocaoCompraDesign remocao=new RemocaoCompraDesign(this.getContext(), this.getCompraDesignSelecionada());
+                remocao.execute();
+                atualizar();
+                atualizar();
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -1,5 +1,6 @@
 package br.edu.ifba.mobile.controlamake.bd;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import android.content.ContentValues;
@@ -142,6 +143,24 @@ public class FachadaBD extends SQLiteOpenHelper {
 			}
 		}
 		return comprasDesign;
+	}
+	//metodo chamado em ControlaMakeActivity ao clicar no envelope
+	public String somaGastos(){
+		SQLiteDatabase db = this.getReadableDatabase();
+		String selecao1 = "SELECT SUM(PRECO) FROM MAKE AS GASTOSMAKE";
+		String selecao2 = "SELECT SUM(PRECO) FROM DESIGN AS GASTOSDESIGN";
+		Cursor cursor1 = db.rawQuery(selecao1, null);
+		Cursor cursor2= db.rawQuery(selecao2, null);
+		String gastosMake="", gastosDesign ="";
+		if (cursor1 != null) {
+			cursor1.moveToFirst();
+			gastosMake= cursor1.getString(0);
+		}
+		if (cursor2 != null) {
+			cursor2.moveToFirst();
+			gastosDesign= cursor2.getString(0);
+		}
+		return "Make: R$"+gastosMake+" | Design: R$"+gastosDesign;
 	}
 
 	

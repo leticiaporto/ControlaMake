@@ -25,6 +25,7 @@ public class GravacaoCompraDesign extends AsyncTask<Void, Void, String> {//parad
         String mensagem = "";
         long codigo=-1;
         if(compraDesign.getCodigo()==-1){
+            //insersão no banco de dados
             codigo=FachadaBD.getInstance().inserirDesign(compraDesign);
         }else{
             codigo=FachadaBD.getInstance().atualizarDesign(compraDesign);

@@ -42,7 +42,7 @@ public class FragmentoCadastroDesign extends Fragment {
 
 
     @Override
-
+    //infla a tela
     public View onCreateView(LayoutInflater inflador, ViewGroup vgrupo, Bundle bundle)    {
         tela= inflador.inflate(R.layout.fragmento_cadastro_compras_design,vgrupo, false);
 
@@ -51,6 +51,7 @@ public class FragmentoCadastroDesign extends Fragment {
     }
 
     private void preparar(){
+        //1 recebe os dados inseridos nas caixas de texto
         produto =(EditText)tela.findViewById(R.id.produto);
         preco =(EditText) tela. findViewById(R.id.preco);
         data=(EditText) tela. findViewById(R.id.data);
@@ -58,7 +59,7 @@ public class FragmentoCadastroDesign extends Fragment {
         botaoGravar = (Button) tela.findViewById(R.id.botaoGravar);
         botaoGravar.setOnClickListener(new View.OnClickListener(){
                                         @Override
-                                        public void onClick(View v) {
+                                        public void onClick(View v) {//3 manda o contexto e os dados para a gravação
                                                 GravacaoCompraDesign gravacao=new GravacaoCompraDesign(getContexto(), getCompraDesign());
                                                 gravacao.execute();
                                                 limparCampos();
@@ -71,6 +72,7 @@ public class FragmentoCadastroDesign extends Fragment {
     }
 
     private CompraDesign getCompraDesign(){
+        //2 coloca os dados recebidos em um objeto do tipo CompraDesign
         compraDesign.setProduto(produto.getText().toString());
         compraDesign.setPreco(Double.valueOf(preco.getText().toString()));
         compraDesign.setData(data.getText().toString());

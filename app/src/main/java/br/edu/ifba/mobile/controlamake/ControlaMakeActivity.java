@@ -37,9 +37,10 @@ public class ControlaMakeActivity extends AppCompatActivity implements ViewPager
      */
     private ViewPager paginador;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+       super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controla_make);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -59,7 +60,7 @@ public class ControlaMakeActivity extends AppCompatActivity implements ViewPager
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Nenhum e-mail aqui.", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, FachadaBD.getInstance().somaGastos(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -74,6 +75,7 @@ public class ControlaMakeActivity extends AppCompatActivity implements ViewPager
     }
 
     @Override
+    //funções que devem ser chamadas ao estar em cada aba
     public void onPageSelected(int position) {
         if(position==1){
             FragmentoCadastroMake.getInstancia().exibirCompraSelecionada();
@@ -103,6 +105,7 @@ public class ControlaMakeActivity extends AppCompatActivity implements ViewPager
         }
 
         @Override
+        //define a quantidade de abas
         public Fragment getItem(int position) {
             Fragment frag = null;
             switch (position){
@@ -132,16 +135,17 @@ public class ControlaMakeActivity extends AppCompatActivity implements ViewPager
         }
 
         @Override
+        //título de cada aba
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
                     return "Informações";
                 case 1:
-                    return "CadastroMake";
+                    return "Make";
                 case 2:
                     return "ComprasMake";
                 case 3:
-                    return "CadastroDesign";
+                    return "Design";
                 case 4:
                     return "ComprasDesign";
             }
