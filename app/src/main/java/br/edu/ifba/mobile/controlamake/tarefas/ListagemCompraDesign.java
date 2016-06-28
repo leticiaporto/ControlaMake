@@ -25,6 +25,7 @@ public class ListagemCompraDesign extends AsyncTask<Void, Void, List<CompraDesig
     }
 
     @Override
+    //Chama a lista do BD
     protected List<CompraDesign> doInBackground(Void... params) {
         List<CompraDesign> comprasDesign = FachadaBD.getInstance().listarComprasDesign();
         return comprasDesign;

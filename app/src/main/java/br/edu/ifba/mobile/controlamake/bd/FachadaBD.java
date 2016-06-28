@@ -155,10 +155,14 @@ public class FachadaBD extends SQLiteOpenHelper {
 		if (cursor1 != null) {
 			cursor1.moveToFirst();
 			gastosMake= cursor1.getString(0);
+			if (gastosMake==null)
+				gastosMake="0.0";
 		}
 		if (cursor2 != null) {
 			cursor2.moveToFirst();
 			gastosDesign= cursor2.getString(0);
+			if (gastosDesign==null)
+				gastosDesign="0.0";
 		}
 		return "Make: R$"+gastosMake+" | Design: R$"+gastosDesign;
 	}
